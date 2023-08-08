@@ -57,21 +57,23 @@ def displayPlayingBoard():
             if boardDisplay[row][col] == -1:
                 print(" ", end= " | ")
             else:
-                print(boardDisplay[row][col], end=" ")
+                print(boardDisplay[row][col], end=" | ")
         print("")
         print("-"*21)
 
-displayBoardSolution()
+#displayBoardSolution()
 displayPlayingBoard()
 
-guess = 0
+Loss = True
 points = 0
-while guess < (25 - numMines):
+while Loss :
     row = int(input("Guess a row(1-5): "))-1
     col = int(input("Guess a col(1-5): "))-1
     if board[row][col]==1:
-        print("Boom!!! You hit a mine.")
+        print(f'Boom!!! You hit a mine. | Your Score : {points}')
         displayBoardSolution()
+        Loss = False
     else:
         boardDisplay[row][col] = checkMinesAround(row,col)
         displayPlayingBoard()
+        points += 10
